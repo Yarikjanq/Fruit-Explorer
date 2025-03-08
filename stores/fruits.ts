@@ -1,17 +1,16 @@
 import { defineStore } from "pinia";
 import { useFetch } from "#app";
-interface Fruit {
-    id: number;
-    name: string;
-  }
+import type { Fruit } from "~/types/fruits";
+
+
   
   export const useProductStore = defineStore("productStore", () => {
-    const products = ref([]);
+    const products = ref<Fruit[]>([]);
     const loading = ref(false)
     const fetchProducts = async () => {
         try {
             loading.value = true
-            const response = await $fetch('https://www.fruityvice.com/api/fruit/all');
+            const response = await $fetch<Fruit[]>('https://www.fruityvice.com/api/fruit/all');
             console.log(response);
             products.value = response
           
