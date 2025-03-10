@@ -1,9 +1,13 @@
 <template>
   <div class="layout">
     <header class="layout__header">
-      <h1 class="layout__title">Це заголовок сайту</h1>
       <nav class="layout__nav">
-        <NuxtLink class="layout__link" to="/">Головна</NuxtLink> |
+        <NuxtLink class="layout__link" to="/">Головна</NuxtLink>
+        <NuxtLink class="layout__link" to="/family"> Family</NuxtLink>
+        <div class="layout__saved">
+          <span v-if="productCount > 0"> {{ productCount }}</span>
+          <NuxtLink class="layout__link" to="/favourite"> Favourite </NuxtLink>
+        </div>
         <NuxtLink class="layout__link layout__link--active" to="/about"
           >Про нас</NuxtLink
         >
@@ -20,6 +24,12 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+import { useSaveProduct } from "../stores/savedFruits";
+
+const savedProduct = useSaveProduct();
+
+const productCount = computed(() => savedProduct.savedFruits.length);
+</script>
 
 <style scoped></style>

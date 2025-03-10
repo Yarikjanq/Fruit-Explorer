@@ -1,3 +1,13 @@
 .fruit-card {
   border: solid 2px black;
 }
+.fruit-card__btn {
+  display: flex;
+  margin: 0 auto;
+  background: lawngreen;
+  border-radius: 12px;
+  padding: 4px 8px;
+  &--active {
+    background: red;
+  }
+}

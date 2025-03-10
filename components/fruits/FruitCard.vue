@@ -21,18 +21,41 @@
         <strong>sugar:</strong> {{ fruitCard.nutritions?.sugar }}
       </li>
     </ul>
+    <button
+      :class="
+        isFavourite(props.fruitCard)
+          ? 'fruit-card__btn--active fruit-card__btn'
+          : 'fruit-card__btn'
+      "
+      @click="addToFavourite"
+    >
+      {{
+        isFavourite(props.fruitCard)
+          ? "Remove from favourite"
+          : "Add to favourite"
+      }}
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { Fruit } from "~/types/fruits";
+import { useSaveProduct } from "../../stores/savedFruits";
 const props = defineProps<{
   fruitCard: Fruit;
 }>();
 
-const card_nutritions = [
-  {
-    name: "",
-  },
-];
+const emit = defineEmits<{
+  (event: "add-to-favourite", fruit: Fruit): void;
+}>();
+
+const addToFavourite = () => {
+  emit("add-to-favourite", props.fruitCard);
+};
+
+const savedFruits = useSaveProduct();
+
+const isFavourite = (fruit: Fruit) => {
+  return savedFruits.savedFruits.some((item: Fruit) => item.id === fruit.id);
+};
 </script>

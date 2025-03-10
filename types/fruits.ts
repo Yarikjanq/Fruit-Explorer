@@ -11,5 +11,6 @@ export interface Fruit {
       carbohydrates?: number;
       protein?: number;
     };
+    active: boolean
   }
     
