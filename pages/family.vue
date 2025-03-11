@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="family-list">
     <div v-if="getFamilyProduct.loading">loading...</div>
     <div v-else v-for="family in getFamilyProduct.saveFamily" :key="family.id">
       <FruitCard

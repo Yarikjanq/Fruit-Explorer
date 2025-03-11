@@ -8,9 +8,6 @@
           <span v-if="productCount > 0"> {{ productCount }}</span>
           <NuxtLink class="layout__link" to="/favourite"> Favourite </NuxtLink>
         </div>
-        <NuxtLink class="layout__link layout__link--active" to="/about"
-          >Про нас</NuxtLink
-        >
       </nav>
     </header>
 
