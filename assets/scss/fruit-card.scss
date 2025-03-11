@@ -1,5 +1,9 @@
 .fruit-card {
   border: solid 2px black;
+  &__family {
+    width: max-content;
+    cursor: pointer;
+  }
 }
 .fruit-card__btn {
   display: flex;

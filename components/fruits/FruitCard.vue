@@ -1,7 +1,8 @@
 <template>
   <div class="fruit-card">
     <h3 class="fruit-card__family">
-      <strong>Family:</strong> {{ fruitCard.family }}
+      <strong @click="addFamily()">Family:</strong>
+      {{ fruitCard.family }}
     </h3>
     <ul class="fruit-card__nutritions">
       <li class="fruit-card__names">
@@ -47,10 +48,14 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (event: "add-to-favourite", fruit: Fruit): void;
+  (event: "add-family", family: string): void;
 }>();
 
 const addToFavourite = () => {
   emit("add-to-favourite", props.fruitCard);
+};
+const addFamily = () => {
+  emit("add-family", props.fruitCard.family ?? "");
 };
 
 const savedFruits = useSaveProduct();

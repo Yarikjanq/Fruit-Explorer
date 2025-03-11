@@ -19,18 +19,7 @@
           <strong>sugar:</strong> {{ product.nutritions?.sugar }}
         </li>
       </ul>
-      <button
-        :class="
-          deleteProduct(product)
-            ? 'fruit-card__btn--active fruit-card__btn'
-            : 'fruit-card__btn'
-        "
-        @click="deleteProduct(product)"
-      >
-        {{
-          deleteProduct(product) ? "Remove from favourite" : "Add to favourite"
-        }}
-      </button>
+      <button @click="toggleFavourite(product)">Remove from favourite</button>
     </div>
   </div>
 </template>
@@ -41,10 +30,9 @@ import FruitCard from "~/components/fruits/FruitCard.vue";
 const savedProduct = useSaveProduct();
 
 const productCount = computed(() => savedProduct.savedFruits);
-const savedFruitssss = useSaveProduct();
+const deleteFruits = useSaveProduct();
 
-const deleteProduct = (fruit: Fruit) => {
-  const savedFruits = JSON.parse(localStorage.getItem("fruits") || "[]");
-  return savedFruits.filter((item: Fruit) => item.id === fruit.id);
+const toggleFavourite = (fruit: Fruit) => {
+  deleteFruits.toggleFavorite(fruit);
 };
 </script>

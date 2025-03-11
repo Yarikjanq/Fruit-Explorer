@@ -19,9 +19,7 @@ import type { Fruit } from "~/types/fruits";
             loading.value = false;
         } catch(error) {
             loading.value = false;
-            if(error instanceof Error) {
-                console.log(error.message)
-            }
+            console.error("Error:", error);
         }
     };
     const filterProducts = async (nutrition: string, min: number, max: number) => {
@@ -35,9 +33,7 @@ import type { Fruit } from "~/types/fruits";
           loading.value = false;
         } catch (error) {
           loading.value = false;
-          if (error instanceof Error) {
-            console.log(error.message);
-          }
+          console.error("Error:", error);
         }
       };
     

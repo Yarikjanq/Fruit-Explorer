@@ -53,6 +53,7 @@
       >
         <div v-if="productStore.filteredProducts.length > 0">
           <FruitCard
+            @add-family="handleAddToFamily"
             @add-to-favourite="handleAddToFavourite"
             :fruit-card="product"
           />
@@ -68,6 +69,7 @@
 <script setup lang="ts">
 import { useProductStore } from "../stores/fruits";
 import { useSaveProduct } from "../stores/savedFruits";
+import { useSaveFamily } from "../stores/family";
 import { onMounted, watch } from "vue";
 import FruitCard from "../components/fruits/FruitCard.vue";
 import type { Fruit } from "~/types/fruits";
@@ -83,12 +85,18 @@ const selectedNutritions = ref([
   "sugar",
 ]);
 
+const router = useRouter();
 const productStore = useProductStore();
 const saveStoreForProduct = useSaveProduct();
+const getFruitFamily = useSaveFamily();
 const applyFilter = () => {
   productStore.filterProducts(nutrion.value, min.value, max.value);
 };
 
+const handleAddToFamily = (family: string) => {
+  getFruitFamily.loadSaveFamily(family);
+  router.push(`/family`);
+};
 const handleAddToFavourite = (fruit: any) => {
   saveStoreForProduct.toggleFavorite(fruit);
 };
